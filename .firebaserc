@@ -1,0 +1,14 @@
+{
+  "targets": {
+    "biagini-roteamentos": {
+      "hosting": {
+        "roteamentos": [
+          "biagini-roteamentos"
+        ]
+      }
+    }
+  },
+  "projects": {
+    "default": "biagini-roteamentos"
+  }
+}

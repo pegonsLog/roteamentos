@@ -57,7 +57,13 @@
               "vendorChunk": true,
               "extractLicenses": false,
               "sourceMap": true,
-              "namedChunks": true
+              "namedChunks": true,
+              "fileReplacements": [
+                {
+                  "replace": "src/environments/environment.ts",
+                  "with": "src/environments/environment.development.ts"
+                }
+              ]
             }
           },
           "defaultConfiguration": "production"
@@ -99,8 +105,21 @@
             ],
             "scripts": []
           }
+        },
+        "deploy": {
+          "builder": "@angular/fire:deploy",
+          "options": {
+            "prerender": false,
+            "ssr": false,
+            "browserTarget": "roteamentos:build:production",
+            "firebaseProject": "biagini-roteamentos",
+            "firebaseHostingSite": "biagini-roteamentos"
+          }
         }
       }
     }
+  },
+  "cli": {
+    "analytics": "18398743-6a34-4d0a-aa7e-410593056a11"
   }
 }

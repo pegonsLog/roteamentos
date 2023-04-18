@@ -10,6 +10,9 @@ import { AppComponent } from './app.component';
 import { EnterprisesModule } from './components/enterprises/enterprises.module';
 import { RoutesModule } from './components/routes/routes.module';
 import { ShiftsModule } from './components/shifts/shifts.module';
+import { initializeApp,provideFirebaseApp } from '@angular/fire/app';
+import { environment } from '../environments/environment';
+import { provideFirestore,getFirestore } from '@angular/fire/firestore';
 
 @NgModule({
   declarations: [
@@ -25,7 +28,9 @@ import { ShiftsModule } from './components/shifts/shifts.module';
     UsersModule,
     EnterprisesModule,
     RoutesModule,
-    ShiftsModule
+    ShiftsModule,
+    provideFirebaseApp(() => initializeApp(environment.firebase)),
+    provideFirestore(() => getFirestore())
   ],
   providers: [],
   bootstrap: [AppComponent]
