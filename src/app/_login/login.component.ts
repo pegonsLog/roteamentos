@@ -4,18 +4,19 @@ import { Subscription } from 'rxjs';
 import { User } from '../_shared/models/User';
 import { Router } from '@angular/router';
 import { LoginService } from './login.service';
+import { FormControl } from '@angular/forms';
 
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
-  styleUrls: ['./login.component.scss']
+  styleUrls: ['./login.component.scss'],
 })
 export class LoginComponent {
+  user = new FormControl('');
+  password = new FormControl('');
+  isAuth: boolean = false;
 
-  user: string = '';
-  password: string = '';
   userAuth: User = {
-    id: '',
     user: '',
     name: '',
     password: '',
@@ -35,45 +36,34 @@ export class LoginComponent {
       .subscribe((users: User[]) => (this.users = users));
   }
 
-  drh(drh: string) {
-    this.query(drh);
-  }
-
-
-  query(type: string) {
-    for (let usr of this.users) {
-      if (usr.user === this.user && usr.password === this.password) {
-        this.userAuth = usr;
+  onEnterpriseList() {
+    for (let user of this.users) {
+      if (
+        user.user === this.user.value &&
+        user.password === this.password.value
+      ) {
+        this.userAuth = user;
+        this.isAuth = true;
       }
     }
-    if (this.userAuth && this.userAuth.role === 'user') {
-      this.router.navigate([`/${type}/user`], {
+    if (this.isAuth) {
+      this.router.navigate(['enterprise/list'], {
         queryParams: {
-          name: this.userAuth.name,
           user: this.userAuth.user,
+          password: this.userAuth.password,
           role: this.userAuth.role,
+          name: this.userAuth.name,
         },
       });
-    }
-    if (this.userAuth && this.userAuth.role === 'adm') {
-      this.router.navigate(['/administrations'], {
-        queryParams: {
-          name: this.userAuth.name,
-          user: this.userAuth.user,
-          role: this.userAuth.role,
-        },
-      });
-    }
-    if (this.user === '' || this.password === '') {
-      alert('Usuário e/ou senha inválido(s)!');
-      this.router.navigate(['']);
+    } else {
+      this.onError();
     }
   }
 
   onError() {
     this.snackBar.open('Usuário ou senha inválidos!', 'X', {
       duration: 3000,
-      verticalPosition: 'top',
+      verticalPosition: 'bottom',
       horizontalPosition: 'center',
     });
   }

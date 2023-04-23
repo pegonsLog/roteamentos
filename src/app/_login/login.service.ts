@@ -18,15 +18,6 @@ db = getFirestore(this.app);
 
 users: User[] = [];
 role: string = '';
-user: User = {
-  id: '',
-  user: '',
-  name: '',
-  password: '',
-  role: '',
-};
-
-constructor() {}
 
 list(): Observable<User[]> {
   const users = collection(this.db, 'users');
@@ -42,12 +33,4 @@ list(): Observable<User[]> {
       });
   }).pipe(map((usersList) => usersList as User[]));
 }
-
-isAuthenticatedAdmDrh() {}
-
-isAuthenticatedUserDrh() {}
-
-isAuthenticatedAdmTre() {}
-
-isAuthenticatedUserTre() {}
 }

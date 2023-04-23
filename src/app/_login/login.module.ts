@@ -4,18 +4,13 @@ import { LoginComponent } from './login.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AngularMaterialModule } from '../_shared/angular-material/angular-material.module';
 
-
-
 @NgModule({
-  declarations: [
-    LoginComponent
-  ],
+  declarations: [LoginComponent],
   imports: [
     CommonModule,
     FormsModule,
     ReactiveFormsModule,
-    AngularMaterialModule
+    AngularMaterialModule,
   ],
-  exports: [LoginComponent]
 })
-export class LoginModule { }
+export class LoginModule {}
