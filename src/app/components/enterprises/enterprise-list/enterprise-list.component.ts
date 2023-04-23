@@ -33,6 +33,10 @@ export class EnterpriseListComponent implements OnInit, OnDestroy {
     this.enterprises$ = enterpriseService.list();
   }
 
+  onAdd(): void {
+    this.router.navigate(['enterprise/new'])
+  }
+
   ngOnInit(): void {}
 
   ngOnDestroy(): void {

@@ -1,12 +1,17 @@
 import { Injectable } from '@angular/core';
-import { initializeApp } from '@firebase/app';
 import {
+  addDoc,
   collection,
-  DocumentData,
+  doc,
+  Firestore,
   getDocs,
   getFirestore,
-} from 'firebase/firestore/lite';
+  setDoc,
+} from '@angular/fire/firestore';
+import { initializeApp } from '@firebase/app';
+import { deleteDoc } from 'firebase/firestore';
 
+import { DocumentData } from 'firebase/firestore/lite';
 import { map, Observable } from 'rxjs';
 import { Enterprise } from 'src/app/_shared/models/Enterprise';
 import { environment } from 'src/environments/environment';
@@ -15,15 +20,15 @@ import { environment } from 'src/environments/environment';
   providedIn: 'root',
 })
 export class EnterpriseService {
-  
   app = initializeApp(environment.firebase);
   db = getFirestore(this.app);
 
-  // enterprises: Enterprise[] = [];
   role: string = '';
   enterprise: Enterprise = {
     name: '',
   };
+
+  constructor(private firestore: Firestore) {}
 
   list(): Observable<Enterprise[]> {
     const enterprises = collection(this.db, 'enterprises');
@@ -41,5 +46,20 @@ export class EnterpriseService {
           subscriber.error(error);
         });
     }).pipe(map((enterprisesList) => enterprisesList as Enterprise[]));
+  }
+
+  delete(id: string) {
+    let $enterpriseRef = doc(this.firestore, 'enterprises/' + id);
+    return deleteDoc($enterpriseRef);
+  }
+
+  addEnterprise(enterprise: Enterprise) {
+    let $enterpriseRef = collection(this.firestore, 'enterprises');
+    return addDoc($enterpriseRef, enterprise);
+  }
+
+  update(enterprise: Enterprise, id: string) {
+    let $enterpriseRef = doc(this.firestore, 'enterprises/' + id);
+    return setDoc($enterpriseRef, enterprise);
   }
 }

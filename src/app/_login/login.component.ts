@@ -12,8 +12,8 @@ import { FormControl } from '@angular/forms';
   styleUrls: ['./login.component.scss'],
 })
 export class LoginComponent {
-  user = new FormControl('');
-  password = new FormControl('');
+  user = new FormControl('564');
+  password = new FormControl('564');
   isAuth: boolean = false;
 
   userAuth: User = {
