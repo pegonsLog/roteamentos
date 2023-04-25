@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import {
   addDoc,
   collection,
+  collectionData,
   doc,
   Firestore,
   getDocs,
@@ -32,21 +33,8 @@ export class EnterpriseService {
   constructor(private firestore: Firestore) {}
 
   list(): Observable<Enterprise[]> {
-    const enterprises = collection(this.db, 'enterprises');
-
-    return new Observable<DocumentData[]>((subscriber) => {
-      getDocs(enterprises)
-        .then((enterprisesSnapshot) => {
-          const enterprisesList = enterprisesSnapshot.docs.map((doc) =>
-            doc.data()
-          );
-          subscriber.next(enterprisesList);
-          subscriber.complete();
-        })
-        .catch((error) => {
-          subscriber.error(error);
-        });
-    }).pipe(map((enterprisesList) => enterprisesList as Enterprise[]));
+    let $enterprises = collection(this.db, 'enterprises');
+    return collectionData($enterprises, {idField: "id"}) as Observable<Enterprise[]>;
   }
 
   delete(id: string) {

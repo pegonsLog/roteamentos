@@ -37,12 +37,24 @@ export class EnterpriseListComponent implements OnInit, OnDestroy {
   onAdd(): void {
     this.router.navigate(['enterprise/new']);
   }
+  onUpdate(enterprise: Enterprise): void {
+    this.enterpriseService.update(enterprise, enterprise.id).then(
+      (data) => {
+      })
+      .catch((err) => {
+      })
+  }
   onDelete(enterprise: Enterprise): void {
-    console.log(enterprise);
-    //this.enterpriseService.delete(id).then();
+    this.enterpriseService.delete(enterprise.id).then(
+      () => {
+        console.log(enterprise.name + ' foi deletada com sucesso!')
+      })
+      .catch((err) => {
+        console.log('Deu Erro!')
+      })
   }
 
-  ngOnInit(): void {}
+  ngOnInit(): void { }
 
   ngOnDestroy(): void {
     // this.subscription.unsubscribe;

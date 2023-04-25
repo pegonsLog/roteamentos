@@ -28,12 +28,12 @@
             <th  id="th" mat-header-cell *matHeaderCellDef></th>
             <td id="actions"  mat-cell *matCellDef="let enterprise">
               <span>
-                  <mat-icon id="edit"
+                  <mat-icon id="edit" (click)="onUpdate(enterprise)"
                     ><span class="material-symbols-outlined">
                       edit
                     </span></mat-icon
                   >
-                  <mat-icon id="delete" (click)="onDelete(enterprise.id)"
+                  <mat-icon id="delete" (click)="onDelete(enterprise)"
                     ><span class="material-symbols-outlined">
                       delete
                     </span></mat-icon
