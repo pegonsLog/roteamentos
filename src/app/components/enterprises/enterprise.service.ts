@@ -25,6 +25,7 @@ export class EnterpriseService {
 
   role: string = '';
   enterprise: Enterprise = {
+    id: '',
     name: '',
   };
 

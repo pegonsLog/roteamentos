@@ -11,7 +11,6 @@
   }
 }
 
-
 #altura {
   overflow-y: auto;
   height: 450px;
@@ -26,38 +25,29 @@ table {
   padding: 10px;
 }
 
-#toolbar{
+#toolbar {
   display: flex;
   justify-content: space-between;
 }
 
-#delete{
+#delete {
   cursor: pointer;
   color: rgb(255, 71, 71);
-  display: flex;
-  align-items: center;
+  padding-top: 5px;
 }
-#edit{
+#edit {
   cursor: pointer;
   color: rgb(5, 167, 5);
-  display: flex;
-  align-items: center;
+  margin-right: 10px;
+  padding-top: 5px;
 }
-.new{
+.new {
   cursor: pointer;
   color: white;
-padding-top: 15px;
-margin-right: -15px;
-}
-#actions{
-  display: flex;
-  justify-content: center;
+  padding-top: 15px;
+  margin-right: -15px;
 }
 
-#mat-button-custom {
-  border: 0px;
-  background-color: white;
-}
 #mat-button-custom-adm {
   border: 0px;
   background-color: rgba(0, 0, 0, 0);
@@ -74,21 +64,16 @@ margin-right: -15px;
   justify-content: center;
   background: rgba(0, 0, 0, 0.15);
 }
-#button-tre {
-  background-color: #78dd77;
-  color: white;
-  font-family: Montserrat;
-}
+
 .red-text {
   font-weight: 600;
   color: red;
 }
 
 .material-symbols-outlined {
-  font-variation-settings:
-  'FILL' 0,
-  'wght' 400,
-  'GRAD' 0,
-  'opsz' 48
+  font-variation-settings: "FILL" 0, "wght" 400, "GRAD" 0, "opsz" 48;
+}
+#th {
+ width: 84%;
 }
 

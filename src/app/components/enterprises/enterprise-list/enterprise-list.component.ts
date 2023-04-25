@@ -3,6 +3,7 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Observable, Subscription } from 'rxjs';
 import { EnterpriseService } from '../enterprise.service';
+import { Enterprise } from 'src/app/_shared/models/Enterprise';
 
 @Component({
   selector: 'app-enterprise-list',
@@ -18,7 +19,7 @@ export class EnterpriseListComponent implements OnInit, OnDestroy {
   name: string = '';
   role: string = '';
 
-  displayedColumns: string[] = ['name'];
+  displayedColumns: string[] = ['name', 'actions'];
 
   constructor(
     private enterpriseService: EnterpriseService,
@@ -34,7 +35,11 @@ export class EnterpriseListComponent implements OnInit, OnDestroy {
   }
 
   onAdd(): void {
-    this.router.navigate(['enterprise/new'])
+    this.router.navigate(['enterprise/new']);
+  }
+  onDelete(enterprise: Enterprise): void {
+    console.log(enterprise);
+    //this.enterpriseService.delete(id).then();
   }
 
   ngOnInit(): void {}
