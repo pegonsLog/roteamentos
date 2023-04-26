@@ -4,7 +4,9 @@ import {
   collection,
   collectionData,
   doc,
+  docData,
   Firestore,
+  getDoc,
   getDocs,
   getFirestore,
   setDoc,
@@ -35,6 +37,11 @@ export class EnterpriseService {
   list(): Observable<Enterprise[]> {
     let $enterprises = collection(this.db, 'enterprises');
     return collectionData($enterprises, {idField: "id"}) as Observable<Enterprise[]>;
+  }
+
+  getEnterprise(id: string){
+    let $enterprises = doc(this.firestore, 'enterprises/' + id);
+    return docData($enterprises) as Observable<Enterprise>;
   }
 
   delete(id: string) {

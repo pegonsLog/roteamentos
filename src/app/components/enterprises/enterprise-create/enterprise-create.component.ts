@@ -30,7 +30,7 @@ export class EnterpriseCreateComponent {
       const enterpriseForm = this.form.getRawValue();
       this.enterpriseService.addEnterprise(enterpriseForm).then(
         () => this.router.navigate(['enterprise/list']),
-        (error: any) => console.error('Erro ao adicionar empresa', error)
+        (error: any) => console.error('Erro ao adicionar a empresa', error)
     )}
   }
 

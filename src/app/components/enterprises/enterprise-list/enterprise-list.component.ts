@@ -10,7 +10,7 @@ import { Enterprise } from 'src/app/_shared/models/Enterprise';
   templateUrl: './enterprise-list.component.html',
   styleUrls: ['./enterprise-list.component.scss'],
 })
-export class EnterpriseListComponent implements OnInit, OnDestroy {
+export class EnterpriseListComponent {
   enterprises$: Observable<any>;
   subscription = new Subscription();
 
@@ -38,11 +38,7 @@ export class EnterpriseListComponent implements OnInit, OnDestroy {
     this.router.navigate(['enterprise/new']);
   }
   onUpdate(enterprise: Enterprise): void {
-    this.enterpriseService.update(enterprise, enterprise.id).then(
-      (data) => {
-      })
-      .catch((err) => {
-      })
+ this.router.navigate(['enterprise/update', enterprise.id])
   }
   onDelete(enterprise: Enterprise): void {
     this.enterpriseService.delete(enterprise.id).then(
@@ -52,12 +48,6 @@ export class EnterpriseListComponent implements OnInit, OnDestroy {
       .catch((err) => {
         console.log('Deu Erro!')
       })
-  }
-
-  ngOnInit(): void { }
-
-  ngOnDestroy(): void {
-    // this.subscription.unsubscribe;
   }
 
   onBack() {
