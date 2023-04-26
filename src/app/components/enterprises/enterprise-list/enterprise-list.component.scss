@@ -6,7 +6,7 @@
 }
 @media (min-width: 600px) and (max-width: 2000px) {
   mat-card {
-    width: 40%;
+    width: 60%;
     margin: 0 auto;
   }
 }
@@ -39,6 +39,12 @@ table {
   cursor: pointer;
   color: rgb(5, 167, 5);
   margin-right: 10px;
+  padding-top: 5px;
+}
+#detail {
+  cursor: pointer;
+  color: rgb(4, 2, 100);
+  margin-right: 15px;
   padding-top: 5px;
 }
 .new {
@@ -74,5 +80,5 @@ table {
   font-variation-settings: "FILL" 0, "wght" 400, "GRAD" 0, "opsz" 48;
 }
 #th {
- width: 80%;
+ width: 83%;
 }

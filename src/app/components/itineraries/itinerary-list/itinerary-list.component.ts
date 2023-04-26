@@ -1,18 +1,17 @@
 import { Component } from '@angular/core';
+import { Observable, Subscription } from 'rxjs';
+import { ItinerariesService } from '../itineraries.service';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { Router, ActivatedRoute } from '@angular/router';
-import { Observable, Subscription } from 'rxjs';
-import { Shift } from 'src/app/_shared/models/Shift';
-import { ShiftsService } from '../shifts.service';
-
+import { Itinerary } from 'src/app/_shared/models/Itinerary';
 
 @Component({
-  selector: 'app-shift-list',
-  templateUrl: './shift-list.component.html',
-  styleUrls: ['./shift-list.component.scss']
+  selector: 'app-itinerary-list',
+  templateUrl: './itinerary-list.component.html',
+  styleUrls: ['./itinerary-list.component.scss']
 })
-export class ShiftListComponent {
-  shifts$: Observable<any>;
+export class ItineraryListComponent {
+  itineraries$: Observable<any>;
   subscription = new Subscription();
 
   user: string = '';
@@ -23,7 +22,7 @@ export class ShiftListComponent {
   displayedColumns: string[] = ['name', 'actions'];
 
   constructor(
-    private shiftService: ShiftsService,
+    private itinerariesService: ItinerariesService,
     private snackBar: MatSnackBar,
     private router: Router,
     private route: ActivatedRoute
@@ -32,22 +31,22 @@ export class ShiftListComponent {
     this.password = this.route.snapshot.queryParams['password'];
     this.name = this.route.snapshot.queryParams['name'];
     this.role = this.route.snapshot.queryParams['role'];
-    this.shifts$ = shiftService.list();
+    this.itineraries$ = itinerariesService.list();
   }
 
   onAdd(): void {
-    this.router.navigate(['shift/new']);
+    this.router.navigate(['itinerary/new']);
   }
-  onDetails(shift: Shift): void {
-    this.router.navigate(['shift/detail', shift.id])
+  onDetails(itinerary: Itinerary): void {
+    this.router.navigate(['itinerary/detail', itinerary.id])
      }
-  onUpdate(shift: Shift): void {
- this.router.navigate(['shift/update', shift.id])
+  onUpdate(itinerary: Itinerary): void {
+ this.router.navigate(['itinerary/update', itinerary.id])
   }
-  onDelete(shift: Shift): void {
-    this.shiftService.delete(shift.id).then(
+  onDelete(itinerary: Itinerary): void {
+    this.itinerariesService.delete(itinerary.id).then(
       () => {
-        console.log(shift.period + ' foi deletada com sucesso!')
+        console.log(itinerary.name + ' foi deletada com sucesso!')
       })
       .catch((err) => {
         console.log('Deu Erro!')

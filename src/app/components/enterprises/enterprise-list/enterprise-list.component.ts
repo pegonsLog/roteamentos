@@ -37,6 +37,9 @@ export class EnterpriseListComponent {
   onAdd(): void {
     this.router.navigate(['enterprise/new']);
   }
+  onDetails(enterprise: Enterprise): void {
+ this.router.navigate(['shift/detail', enterprise.id])
+  }
   onUpdate(enterprise: Enterprise): void {
  this.router.navigate(['enterprise/update', enterprise.id])
   }

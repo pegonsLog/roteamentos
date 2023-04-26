@@ -1,6 +1,7 @@
 export interface Shift {
   id: string,
-  shift: string
-  period: string,
-  linkShift: string
+  shiftName?: string
+  period?: string,
+  idEnterprise?: string,
+  linkShift?: string
 }

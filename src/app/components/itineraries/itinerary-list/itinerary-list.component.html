@@ -6,7 +6,7 @@
 <mat-card>
   <mat-card-header>
     <mat-toolbar id="toolbar" color="primary"
-      >TURNOS
+      >ROTAS
       <button id="mat-button-custom-adm">
         <mat-icon class="new" (click)="onAdd()"
           ><span class="material-symbols-outlined"> add </span></mat-icon
@@ -15,8 +15,8 @@
     </mat-toolbar>
   </mat-card-header>
   <mat-card-content>
-    <div id="altura" *ngIf="shifts$ | async; else loading">
-      <table mat-table [dataSource]="shifts$ | async">
+    <div id="altura" *ngIf="itineraries$ | async; else loading">
+      <table mat-table [dataSource]="itineraries$ | async">
         <ng-container matColumnDef="name">
           <th
             id="th"
@@ -26,22 +26,22 @@
           >
             Turno
           </th>
-          <td mat-cell *matCellDef="let shift">{{ shift.name }}</td>
+          <td mat-cell *matCellDef="let itinerary">{{ itinerary.name }}</td>
         </ng-container>
 
         <ng-container matColumnDef="actions">
           <th id="th" mat-header-cell *matHeaderCellDef></th>
-          <td id="actions" mat-cell *matCellDef="let shift">
+          <td id="actions" mat-cell *matCellDef="let itinerary">
             <span>
-              <mat-icon id="detail" (click)="onDetails(shift)"
+              <mat-icon id="detail" (click)="onDetails(itinerary)"
                 ><span class="material-symbols-outlined">
                   login
                 </span></mat-icon
               >
-              <mat-icon id="edit" (click)="onUpdate(shift)"
+              <mat-icon id="edit" (click)="onUpdate(itinerary)"
                 ><span class="material-symbols-outlined"> edit </span></mat-icon
               >
-              <mat-icon id="delete" (click)="onDelete(shift)"
+              <mat-icon id="delete" (click)="onDelete(itinerary)"
                 ><span class="material-symbols-outlined">
                   delete
                 </span></mat-icon
@@ -73,3 +73,4 @@
     </button>
   </mat-card-actions>
 </mat-card>
+
