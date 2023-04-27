@@ -12,6 +12,7 @@ import { Itinerary } from 'src/app/_shared/models/Itinerary';
 })
 export class ItineraryListComponent {
   itineraries$: Observable<any>;
+  idShift: string = '';
   subscription = new Subscription();
 
   user: string = '';
@@ -31,6 +32,7 @@ export class ItineraryListComponent {
     this.password = this.route.snapshot.queryParams['password'];
     this.name = this.route.snapshot.queryParams['name'];
     this.role = this.route.snapshot.queryParams['role'];
+    this.idShift = this.route.snapshot.queryParams['idShift'];
     this.itineraries$ = itinerariesService.list();
   }
 
@@ -38,7 +40,7 @@ export class ItineraryListComponent {
     this.router.navigate(['itinerary/new']);
   }
   onDetails(itinerary: Itinerary): void {
-    this.router.navigate(['itinerary/detail', itinerary.id])
+    this.router.navigate(['itinerary/detail'])
      }
   onUpdate(itinerary: Itinerary): void {
  this.router.navigate(['itinerary/update', itinerary.id])
@@ -54,6 +56,6 @@ export class ItineraryListComponent {
   }
 
   onBack() {
-    this.router.navigate(['/']);
+    this.router.navigate(['shift/list']);
   }
 }

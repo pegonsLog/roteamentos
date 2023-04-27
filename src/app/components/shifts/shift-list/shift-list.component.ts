@@ -5,14 +5,14 @@ import { Observable, Subscription } from 'rxjs';
 import { Shift } from 'src/app/_shared/models/Shift';
 import { ShiftsService } from '../shifts.service';
 
-
 @Component({
   selector: 'app-shift-list',
   templateUrl: './shift-list.component.html',
-  styleUrls: ['./shift-list.component.scss']
+  styleUrls: ['./shift-list.component.scss'],
 })
 export class ShiftListComponent {
   shifts$: Observable<any>;
+  idEnterprise: string = '';
   subscription = new Subscription();
 
   user: string = '';
@@ -20,7 +20,7 @@ export class ShiftListComponent {
   name: string = '';
   role: string = '';
 
-  displayedColumns: string[] = ['name', 'actions'];
+  displayedColumns: string[] = ['shiftName', 'period', 'actions'];
 
   constructor(
     private shiftService: ShiftsService,
@@ -32,29 +32,37 @@ export class ShiftListComponent {
     this.password = this.route.snapshot.queryParams['password'];
     this.name = this.route.snapshot.queryParams['name'];
     this.role = this.route.snapshot.queryParams['role'];
+    this.idEnterprise = this.route.snapshot.queryParams['idEnterprise'];
     this.shifts$ = shiftService.list();
   }
 
-  onAdd(): void {
-    this.router.navigate(['shift/new']);
+  onAdd(idEnterprise: string): void {
+    this.router.navigate(['shift/new'], {
+      queryParams: { idEnterprise },
+    });
   }
   onDetails(shift: Shift): void {
-    this.router.navigate(['shift/detail', shift.id])
-     }
+    this.router.navigate(['itinerary/list'], {
+      queryParams: {
+        idShift: shift.id,
+      },
+    });
+  }
   onUpdate(shift: Shift): void {
- this.router.navigate(['shift/update', shift.id])
+    this.router.navigate(['shift/update', shift.id]);
   }
   onDelete(shift: Shift): void {
-    this.shiftService.delete(shift.id).then(
-      () => {
-        console.log(shift.period + ' foi deletada com sucesso!')
+    this.shiftService
+      .delete(shift.id)
+      .then(() => {
+        console.log(shift.period + ' foi deletada com sucesso!');
       })
       .catch((err) => {
-        console.log('Deu Erro!')
-      })
+        console.log('Deu Erro!');
+      });
   }
 
   onBack() {
-    this.router.navigate(['/']);
+    this.router.navigate(['enterprise/list']);
   }
 }

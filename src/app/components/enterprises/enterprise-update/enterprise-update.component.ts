@@ -12,7 +12,6 @@ import { EnterpriseService } from '../enterprise.service';
   styleUrls: ['./enterprise-update.component.scss'],
 })
 export class EnterpriseUpdateComponent implements OnDestroy {
-  name = new FormControl('');
   enterpriseId: string = '';
   enterprise: Enterprise = {
     id: '',

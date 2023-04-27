@@ -38,19 +38,22 @@ export class EnterpriseListComponent {
     this.router.navigate(['enterprise/new']);
   }
   onDetails(enterprise: Enterprise): void {
- this.router.navigate(['shift/detail', enterprise.id])
+    this.router.navigate(['shift/detail'], {
+      queryParams: { idEnterprise: enterprise.id },
+    });
   }
   onUpdate(enterprise: Enterprise): void {
- this.router.navigate(['enterprise/update', enterprise.id])
+    this.router.navigate(['enterprise/update', enterprise.id]);
   }
   onDelete(enterprise: Enterprise): void {
-    this.enterpriseService.delete(enterprise.id).then(
-      () => {
-        console.log(enterprise.name + ' foi deletada com sucesso!')
+    this.enterpriseService
+      .delete(enterprise.id)
+      .then(() => {
+        console.log(enterprise.name + ' foi deletada com sucesso!');
       })
       .catch((err) => {
-        console.log('Deu Erro!')
-      })
+        console.log('Deu Erro!');
+      });
   }
 
   onBack() {

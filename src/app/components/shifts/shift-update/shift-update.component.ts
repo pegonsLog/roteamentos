@@ -1,6 +1,6 @@
 import { Location } from '@angular/common';
 import { Component, OnDestroy } from '@angular/core';
-import { FormControl, FormBuilder } from '@angular/forms';
+import { FormControl, FormBuilder, FormGroup } from '@angular/forms';
 import { Router, ActivatedRoute } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { Shift } from 'src/app/_shared/models/Shift';
@@ -12,9 +12,7 @@ import { ShiftsService } from '../shifts.service';
   styleUrls: ['./shift-update.component.scss'],
 })
 export class ShiftUpdateComponent implements OnDestroy {
-  shiftName = new FormControl('');
-  period = new FormControl('');
-  linkShift = new FormControl('');
+
   shiftId: string = '';
   shift: Shift = {
     id: '',

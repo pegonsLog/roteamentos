@@ -1,13 +1,29 @@
 <mat-card>
   <mat-card-content>
-    <mat-toolbar color="primary" id="peso-fonte">ROTEAMENTOS</mat-toolbar>
+    <mat-toolbar color="primary" id="peso-fonte">Adicionar turno</mat-toolbar>
     <form [formGroup]="form">
       <mat-form-field class="full-width">
         <input
           matInput
-          placeholder="Empresa"
+          placeholder="Turno"
           type="text"
-          formControlName="name"
+          formControlName="shiftName"
+        />
+      </mat-form-field>
+      <mat-form-field class="full-width">
+        <input
+          matInput
+          placeholder="Período"
+          type="text"
+          formControlName="period"
+        />
+      </mat-form-field>
+      <mat-form-field class="full-width">
+        <input
+          matInput
+          placeholder="Link do mapa"
+          type="text"
+          formControlName="linkShift"
         />
       </mat-form-field>
     </form>

@@ -6,7 +6,7 @@ import {
   FormGroup,
   Validators,
 } from '@angular/forms';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Shift } from 'src/app/_shared/models/Shift';
 import { ShiftsService } from '../shifts.service';
 
@@ -31,12 +31,17 @@ export class ShiftCreateComponent {
 
   constructor(
     private router: Router,
+    private route: ActivatedRoute,
     private location: Location,
     private shiftService: ShiftsService,
     private fb: FormBuilder
   ) {
+    const idEnterprise = this.route.snapshot.queryParams['idEnterprise'];
     this.form = this.fb.group({
-      name: ['', Validators.required],
+      shiftName: ['', Validators.required],
+      period: ['', Validators.required],
+      idEnterprise: [(this.shift.idEnterprise = idEnterprise)],
+      linkShift: ['', Validators.required],
     });
   }
 

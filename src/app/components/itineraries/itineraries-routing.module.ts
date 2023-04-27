@@ -5,9 +5,10 @@ import { ItineraryUpdateComponent } from './itinerary-update/itinerary-update.co
 
 const routes: Routes = [
 
+  { path: 'list', component: ItineraryListComponent },
+  { path: 'detail', component: ItineraryListComponent },
   { path: 'new', component: ItineraryCreateComponent },
   { path: 'update/:id', component: ItineraryUpdateComponent },
-  { path: 'detail/:id', component: ItineraryListComponent }
 ];
 
 export const ItinerariesRoutes = RouterModule.forChild(routes);

@@ -1,14 +1,32 @@
 <mat-card>
   <mat-card-content>
-    <mat-toolbar color="primary" id="peso-fonte">ROTEAMENTOS</mat-toolbar>
+    <mat-toolbar color="primary" id="peso-fonte">Alterar turno</mat-toolbar>
     <form>
       <mat-form-field class="full-width">
         <input
           matInput
-          placeholder="Empresa"
+          placeholder="Turno"
           type="text"
-          name="name"
+          name="shiftName"
+          [(ngModel)]="shift.shiftName"
+        />
+      </mat-form-field>
+      <mat-form-field class="full-width">
+        <input
+          matInput
+          placeholder="Período"
+          type="text"
+          name="period"
           [(ngModel)]="shift.period"
+        />
+      </mat-form-field>
+      <mat-form-field class="full-width">
+        <input
+          matInput
+          placeholder="Link do mapa"
+          type="text"
+          name="linkShift"
+          [(ngModel)]="shift.linkShift"
         />
       </mat-form-field>
     </form>

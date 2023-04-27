@@ -8,7 +8,7 @@
     <mat-toolbar id="toolbar" color="primary"
       >TURNOS
       <button id="mat-button-custom-adm">
-        <mat-icon class="new" (click)="onAdd()"
+        <mat-icon class="new" (click)="onAdd(idEnterprise)"
           ><span class="material-symbols-outlined"> add </span></mat-icon
         >
       </button>
@@ -17,21 +17,22 @@
   <mat-card-content>
     <div id="altura" *ngIf="shifts$ | async; else loading">
       <table mat-table [dataSource]="shifts$ | async">
-        <ng-container matColumnDef="name">
-          <th
-            id="th"
-            mat-header-cell
-            *matHeaderCellDef
-            style="font-weight: 600"
-          >
+        <ng-container matColumnDef="shiftName">
+          <th class="largura-turno" mat-header-cell *matHeaderCellDef style="font-weight: 600">
             Turno
           </th>
-          <td mat-cell *matCellDef="let shift">{{ shift.name }}</td>
+          <td mat-cell *matCellDef="let shift">{{ shift.shiftName }}</td>
+        </ng-container>
+        <ng-container matColumnDef="period">
+          <th class="largura-periodo" mat-header-cell *matHeaderCellDef style="font-weight: 600">
+            Período
+          </th>
+          <td mat-cell *matCellDef="let shift">{{ shift.period }}</td>
         </ng-container>
 
         <ng-container matColumnDef="actions">
-          <th id="th" mat-header-cell *matHeaderCellDef></th>
-          <td id="actions" mat-cell *matCellDef="let shift">
+          <th mat-header-cell *matHeaderCellDef></th>
+          <td class="alinhamento-icones" mat-cell *matCellDef="let shift">
             <span>
               <mat-icon id="detail" (click)="onDetails(shift)"
                 ><span class="material-symbols-outlined">

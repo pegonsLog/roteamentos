@@ -21,10 +21,6 @@
   font-weight: 300;
 }
 
-table {
-  padding: 10px;
-}
-
 #toolbar {
   display: flex;
   justify-content: space-between;
@@ -33,18 +29,18 @@ table {
   cursor: pointer;
   color: rgb(4, 2, 100);
   margin-right: 15px;
-  padding-top: 5px;
+  padding-top: 4px;
 }
 #delete {
   cursor: pointer;
   color: rgb(255, 71, 71);
-  padding-top: 5px;
+  padding-top: 4px;
 }
 #edit {
   cursor: pointer;
   color: rgb(5, 167, 5);
   margin-right: 10px;
-  padding-top: 5px;
+  padding-top: 4px;
 }
 .new {
   cursor: pointer;
@@ -78,6 +74,16 @@ table {
 .material-symbols-outlined {
   font-variation-settings: "FILL" 0, "wght" 400, "GRAD" 0, "opsz" 48;
 }
-#th {
- width: 80%;
+
+.largura-turno{
+  width: 20%;
+}
+.largura-periodo{
+  width: 40%;
+}
+.alinhamento-icones{
+display: flex;
+justify-content: right;
+padding-top: 10px;
+height: 52px;
 }

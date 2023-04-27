@@ -25,10 +25,10 @@ export class ItineraryUpdateComponent {
     id: '',
     name: '',
     direction: '',
-    extension: '',
+    extension: 0,
     full: 0,
     partial: 0,
-    linkRoute: '',
+    linkItinerary: '',
     idShift: '',
   };
 

@@ -20,6 +20,13 @@ const routes: Routes = [
         (m) => m.ShiftsModule
       ),
   },
+  {
+    path: 'itinerary',
+    loadChildren: () =>
+      import('src/app/components/itineraries/itineraries.module').then(
+        (m) => m.ItinerariesModule
+      ),
+  },
 ];
 
 @NgModule({

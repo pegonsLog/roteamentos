@@ -5,9 +5,10 @@ import { ShiftUpdateComponent } from './shift-update/shift-update.component';
 
 const routes: Routes = [
 
+  { path: 'list', component: ShiftListComponent },
   { path: 'new', component: ShiftCreateComponent },
+  { path: 'detail', component: ShiftListComponent },
   { path: 'update/:id', component: ShiftUpdateComponent },
-  { path: 'detail/:id', component: ShiftListComponent }
 ];
 
 export const ShiftsRoutes = RouterModule.forChild(routes);
