@@ -6,16 +6,13 @@ import {
   doc,
   docData,
   Firestore,
-  getDoc,
-  getDocs,
   getFirestore,
-  setDoc,
+  setDoc
 } from '@angular/fire/firestore';
 import { initializeApp } from '@firebase/app';
 import { deleteDoc } from 'firebase/firestore';
 
-import { DocumentData } from 'firebase/firestore/lite';
-import { map, Observable } from 'rxjs';
+import { Observable } from 'rxjs';
 import { Shift } from 'src/app/_shared/models/Shift';
 import { environment } from 'src/environments/environment';
 

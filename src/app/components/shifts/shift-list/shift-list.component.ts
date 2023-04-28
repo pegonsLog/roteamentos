@@ -1,7 +1,7 @@
-import { Component } from '@angular/core';
+import { Component, OnDestroy } from '@angular/core';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { Router, ActivatedRoute } from '@angular/router';
-import { Observable, Subscription } from 'rxjs';
+import { Observable, Subscription, filter, map } from 'rxjs';
 import { Shift } from 'src/app/_shared/models/Shift';
 import { ShiftsService } from '../shifts.service';
 
@@ -10,10 +10,9 @@ import { ShiftsService } from '../shifts.service';
   templateUrl: './shift-list.component.html',
   styleUrls: ['./shift-list.component.scss'],
 })
-export class ShiftListComponent {
+export class ShiftListComponent implements OnDestroy {
   shifts$: Observable<any>;
   idEnterprise: string = '';
-  subscription = new Subscription();
 
   user: string = '';
   password: string = '';
@@ -32,9 +31,17 @@ export class ShiftListComponent {
     this.password = this.route.snapshot.queryParams['password'];
     this.name = this.route.snapshot.queryParams['name'];
     this.role = this.route.snapshot.queryParams['role'];
-    this.idEnterprise = this.route.snapshot.queryParams['idEnterprise'];
-    this.shifts$ = shiftService.list();
+    const idEnterprise = this.route.snapshot.queryParams['idEnterprise'];
+
+    this.shifts$ = shiftService
+      .list()
+      .pipe(
+        map((shifts: Shift[]) =>
+          shifts.filter((shift: Shift) => shift.idEnterprise === idEnterprise)
+        )
+      );
   }
+  ngOnDestroy(): void {}
 
   onAdd(idEnterprise: string): void {
     this.router.navigate(['shift/new'], {
@@ -45,6 +52,7 @@ export class ShiftListComponent {
     this.router.navigate(['itinerary/list'], {
       queryParams: {
         idShift: shift.id,
+        idEnterprise: shift.idEnterprise
       },
     });
   }

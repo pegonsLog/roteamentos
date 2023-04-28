@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { Observable, Subscription } from 'rxjs';
+import { Observable, Subscription, map } from 'rxjs';
 import { ItinerariesService } from '../itineraries.service';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { Router, ActivatedRoute } from '@angular/router';
@@ -8,19 +8,18 @@ import { Itinerary } from 'src/app/_shared/models/Itinerary';
 @Component({
   selector: 'app-itinerary-list',
   templateUrl: './itinerary-list.component.html',
-  styleUrls: ['./itinerary-list.component.scss']
+  styleUrls: ['./itinerary-list.component.scss'],
 })
 export class ItineraryListComponent {
   itineraries$: Observable<any>;
-  idShift: string = '';
-  subscription = new Subscription();
+  idEnterprise: string = ''
 
   user: string = '';
   password: string = '';
   name: string = '';
   role: string = '';
 
-  displayedColumns: string[] = ['name', 'actions'];
+  displayedColumns: string[] = ['name', 'direction', 'extension', 'full', 'partial', 'actions'];
 
   constructor(
     private itinerariesService: ItinerariesService,
@@ -32,30 +31,44 @@ export class ItineraryListComponent {
     this.password = this.route.snapshot.queryParams['password'];
     this.name = this.route.snapshot.queryParams['name'];
     this.role = this.route.snapshot.queryParams['role'];
-    this.idShift = this.route.snapshot.queryParams['idShift'];
-    this.itineraries$ = itinerariesService.list();
+    const idShift = this.route.snapshot.queryParams['idShift'];
+    this.idEnterprise = this.route.snapshot.queryParams['idEnterprise'];
+    this.itineraries$ = itinerariesService
+      .list()
+      .pipe(
+        map((itineraries: Itinerary[]) =>
+          itineraries.filter(
+            (itinerary: Itinerary) => itinerary.idShift === idShift
+          )
+        )
+      );
   }
 
   onAdd(): void {
     this.router.navigate(['itinerary/new']);
   }
   onDetails(itinerary: Itinerary): void {
-    this.router.navigate(['itinerary/detail'])
-     }
+    this.router.navigate(['itinerary/detail']);
+  }
   onUpdate(itinerary: Itinerary): void {
- this.router.navigate(['itinerary/update', itinerary.id])
+    this.router.navigate(['itinerary/update', itinerary.id]);
   }
   onDelete(itinerary: Itinerary): void {
-    this.itinerariesService.delete(itinerary.id).then(
-      () => {
-        console.log(itinerary.name + ' foi deletada com sucesso!')
+    this.itinerariesService
+      .delete(itinerary.id)
+      .then(() => {
+        console.log(itinerary.name + ' foi deletada com sucesso!');
       })
       .catch((err) => {
-        console.log('Deu Erro!')
-      })
+        console.log('Deu Erro!');
+      });
   }
 
   onBack() {
-    this.router.navigate(['shift/list']);
+    this.router.navigate(['shift/list'], {
+      queryParams: {
+        idEnterprise: this.idEnterprise
+      }
+    });
   }
 }

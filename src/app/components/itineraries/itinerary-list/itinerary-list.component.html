@@ -16,7 +16,7 @@
   </mat-card-header>
   <mat-card-content>
     <div id="altura" *ngIf="itineraries$ | async; else loading">
-      <table mat-table [dataSource]="itineraries$ | async">
+      <table mat-table [dataSource]="itineraries$ | async" >
         <ng-container matColumnDef="name">
           <th
             id="th"
@@ -27,6 +27,50 @@
             Rota
           </th>
           <td mat-cell *matCellDef="let itinerary">{{ itinerary.name }}</td>
+        </ng-container>
+        <ng-container matColumnDef="direction">
+          <th
+            id="th"
+            mat-header-cell
+            *matHeaderCellDef
+            style="font-weight: 600"
+          >
+            Sentido
+          </th>
+          <td mat-cell *matCellDef="let itinerary">{{ itinerary.direction }}</td>
+        </ng-container>
+        <ng-container matColumnDef="extension">
+          <th
+            id="th"
+            mat-header-cell
+            *matHeaderCellDef
+            style="font-weight: 600"
+          >
+            Extensão
+          </th>
+          <td mat-cell *matCellDef="let itinerary">{{ itinerary.extension }}</td>
+        </ng-container>
+        <ng-container matColumnDef="full">
+          <th
+            id="th"
+            mat-header-cell
+            *matHeaderCellDef
+            style="font-weight: 600"
+          >
+            Pleno
+          </th>
+          <td mat-cell *matCellDef="let itinerary">{{ itinerary.full }}</td>
+        </ng-container>
+        <ng-container matColumnDef="partial">
+          <th
+            id="th"
+            mat-header-cell
+            *matHeaderCellDef
+            style="font-weight: 600"
+          >
+            Parcial
+          </th>
+          <td mat-cell *matCellDef="let itinerary">{{ itinerary.partial }}</td>
         </ng-container>
 
         <ng-container matColumnDef="actions">

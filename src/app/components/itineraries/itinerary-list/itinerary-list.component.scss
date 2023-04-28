@@ -78,6 +78,10 @@ table {
 .material-symbols-outlined {
   font-variation-settings: "FILL" 0, "wght" 400, "GRAD" 0, "opsz" 48;
 }
-#th {
- width: 80%;
-}
+
+.alinhamento-icones{
+  display: flex;
+  justify-content: right;
+  height: 52px;
+  padding-top: 10px;
+  }
