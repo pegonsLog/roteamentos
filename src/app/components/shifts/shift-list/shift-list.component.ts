@@ -13,6 +13,7 @@ import { ShiftsService } from '../shifts.service';
 export class ShiftListComponent implements OnDestroy {
   shifts$: Observable<any>;
   idEnterprise: string = '';
+  idShift: string = '';
 
   user: string = '';
   password: string = '';
@@ -32,12 +33,15 @@ export class ShiftListComponent implements OnDestroy {
     this.name = this.route.snapshot.queryParams['name'];
     this.role = this.route.snapshot.queryParams['role'];
     this.idEnterprise = this.route.snapshot.queryParams['idEnterprise'];
+    this.idShift = this.route.snapshot.queryParams['idShift'];
 
     this.shifts$ = shiftService
       .list()
       .pipe(
         map((shifts: Shift[]) =>
-          shifts.filter((shift: Shift) => shift.idEnterprise === this.idEnterprise)
+          shifts.filter(
+            (shift: Shift) => shift.idEnterprise === this.idEnterprise
+          )
         )
       );
   }
@@ -59,7 +63,14 @@ export class ShiftListComponent implements OnDestroy {
   }
 
   onUpdate(shift: Shift): void {
-    this.router.navigate(['shift/update', shift.id]);
+    this.router.navigate(['shift/update', shift.id], {
+      queryParams: {
+        shiftName: shift.shiftName,
+        period: shift.period,
+        linkShift: shift.linkShift,
+        idEnterprise: shift.idEnterprise
+      },
+    });
   }
 
   onDelete(shift: Shift): void {

@@ -1,14 +1,14 @@
 <mat-card>
-  <mat-card-content>
-    <mat-toolbar color="primary" id="peso-fonte">Alterar turno</mat-toolbar>
-    <form>
+  <form [formGroup]="form" (ngSubmit)="onSave()">
+    <mat-card-content>
+      <mat-toolbar color="primary" id="peso-fonte">Alterar turno</mat-toolbar>
       <mat-form-field class="full-width">
         <input
           matInput
           placeholder="Turno"
           type="text"
           name="shiftName"
-          [(ngModel)]="shift.shiftName"
+          formControlName="shiftName"
         />
       </mat-form-field>
       <mat-form-field class="full-width">
@@ -16,8 +16,7 @@
           matInput
           placeholder="Período"
           type="text"
-          name="period"
-          [(ngModel)]="shift.period"
+          formControlName="period"
         />
       </mat-form-field>
       <mat-form-field class="full-width">
@@ -25,25 +24,23 @@
           matInput
           placeholder="Link do mapa"
           type="text"
-          name="linkShift"
-          [(ngModel)]="shift.linkShift"
+          formControlName="linkShift"
         />
       </mat-form-field>
-    </form>
 
-    <mat-card-actions>
-      <button id="button-save" name="save" (click)="onSave()" mat-raised-button>
-        Salvar
-      </button>
-      <button
-        id="button-back"
-        name="back"
-        mat-raised-button
-        (click)="onShiftList()"
-      >
-        Voltar
-      </button>
-    </mat-card-actions>
-  </mat-card-content>
+      <mat-card-actions>
+        <button id="button-save" name="save" type="submit" mat-raised-button>
+          Salvar
+        </button>
+        <button
+          id="button-back"
+          name="back"
+          mat-raised-button
+          (click)="onShiftList()"
+        >
+          Voltar
+        </button>
+      </mat-card-actions>
+    </mat-card-content>
+  </form>
 </mat-card>
-

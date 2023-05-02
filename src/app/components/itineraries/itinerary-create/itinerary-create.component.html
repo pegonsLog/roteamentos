@@ -1,13 +1,13 @@
 <mat-card>
   <mat-card-content>
-    <mat-toolbar color="primary" id="peso-fonte">ROTEAMENTOS</mat-toolbar>
-    <form [formGroup]="form">
+    <mat-toolbar color="primary" id="peso-fonte">Adicionar rota</mat-toolbar>
+    <form [formGroup]="form" (ngSubmit)="onSave()">
       <mat-form-field class="full-width">
         <input
           matInput
           placeholder="Rota"
           type="text"
-          FormControlName="name"
+          formControlName="name"
         />
       </mat-form-field>
       <mat-form-field class="full-width">
@@ -15,7 +15,7 @@
           matInput
           placeholder="Sentido"
           type="text"
-          FormControlName="direction"
+          formControlName="direction"
         />
       </mat-form-field>
       <mat-form-field class="full-width">
@@ -23,7 +23,7 @@
           matInput
           placeholder="Extensão"
           type="text"
-          FormControlName="extension"
+          formControlName="extension"
         />
       </mat-form-field>
       <mat-form-field class="full-width">
@@ -31,7 +31,7 @@
           matInput
           placeholder="Pleno"
           type="text"
-          FormControlName="full"
+          formControlName="full"
         />
       </mat-form-field>
       <mat-form-field class="full-width">
@@ -39,7 +39,7 @@
           matInput
           placeholder="Parcial"
           type="text"
-          FormControlName="Partial"
+          formControlName="partial"
         />
       </mat-form-field>
       <mat-form-field class="full-width">
@@ -47,13 +47,13 @@
           matInput
           placeholder="Link do mapa"
           type="text"
-          FormControlName="linkItinerary"
+          formControlName="linkItinerary"
         />
       </mat-form-field>
 
 
     <mat-card-actions>
-      <button id="button-save" name="save" (click)="onSave()" mat-raised-button>
+      <button id="button-save" name="save" type="submit" mat-raised-button>
         Salvar
       </button>
       <button

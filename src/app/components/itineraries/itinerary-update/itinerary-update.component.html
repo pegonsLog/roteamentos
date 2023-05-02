@@ -1,19 +1,59 @@
 <mat-card>
   <mat-card-content>
-    <mat-toolbar color="primary" id="peso-fonte">ROTEAMENTOS</mat-toolbar>
-    <form [formGroup]="form">
+    <mat-toolbar color="primary" id="peso-fonte">Editar rota</mat-toolbar>
+    <form [formGroup]="form" (ngSubmit)="onSave()">
       <mat-form-field class="full-width">
         <input
           matInput
-          placeholder="Empresa"
+          placeholder="Rota"
           type="text"
           formControlName="name"
         />
       </mat-form-field>
-    </form>
+      <mat-form-field class="full-width">
+        <input
+          matInput
+          placeholder="Sentido"
+          type="text"
+          formControlName="direction"
+        />
+      </mat-form-field>
+      <mat-form-field class="full-width">
+        <input
+          matInput
+          placeholder="Extensão"
+          type="text"
+          formControlName="extension"
+        />
+      </mat-form-field>
+      <mat-form-field class="full-width">
+        <input
+          matInput
+          placeholder="Pleno"
+          type="text"
+          formControlName="full"
+        />
+      </mat-form-field>
+      <mat-form-field class="full-width">
+        <input
+          matInput
+          placeholder="Parcial"
+          type="text"
+          formControlName="partial"
+        />
+      </mat-form-field>
+      <mat-form-field class="full-width">
+        <input
+          matInput
+          placeholder="Link do mapa"
+          type="text"
+          formControlName="linkItinerary"
+        />
+      </mat-form-field>
+
 
     <mat-card-actions>
-      <button id="button-save" name="save" (click)="onSave()" mat-raised-button>
+      <button id="button-save" name="save" type="submit" mat-raised-button>
         Salvar
       </button>
       <button
@@ -25,5 +65,7 @@
         Voltar
       </button>
     </mat-card-actions>
+  </form>
   </mat-card-content>
 </mat-card>
+

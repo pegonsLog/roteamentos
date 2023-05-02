@@ -21,6 +21,7 @@ export class ShiftCreateComponent {
   period = new FormControl('');
   linkShift = new FormControl('');
   shiftId: string = '';
+  idEnterprise: string = '';
   shift: Shift = {
     id: '',
     shiftName: '',
@@ -36,26 +37,35 @@ export class ShiftCreateComponent {
     private shiftService: ShiftsService,
     private fb: FormBuilder
   ) {
-    const idEnterprise = this.route.snapshot.queryParams['idEnterprise'];
+    this.idEnterprise = this.route.snapshot.queryParams['idEnterprise'];
     this.form = this.fb.group({
       shiftName: ['', Validators.required],
       period: ['', Validators.required],
-      idEnterprise: [(this.shift.idEnterprise = idEnterprise)],
+      idEnterprise: [(this.shift.idEnterprise = this.idEnterprise)],
       linkShift: ['', Validators.required],
     });
   }
 
   onSave() {
-    // if (this.form.valid) {
-    const shiftForm = this.form.getRawValue();
-    this.shiftService.addShift(shiftForm).then(
-      () => this.router.navigate(['shift/list']),
-      (error: any) => console.error('Erro ao adicionar a turno', error)
-    );
-    // }
+    if (this.form.valid) {
+      const shiftForm = this.form.getRawValue();
+      this.shiftService.addShift(shiftForm).then(
+        () =>
+          this.router.navigate(['shift/list'], {
+            queryParams: {
+              idEnterprise: this.idEnterprise,
+            },
+          }),
+        (error: any) => console.error('Erro ao adicionar a turno', error)
+      );
+    }
   }
 
   onShiftList() {
-    this.location.back();
+    this.router.navigate(['shift/list'], {
+      queryParams: {
+        idEnterprise: this.idEnterprise,
+      },
+    });
   }
 }

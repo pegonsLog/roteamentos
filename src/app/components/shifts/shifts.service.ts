@@ -41,7 +41,7 @@ export class ShiftsService {
 
   getShift(id: string){
     let $shifts = doc(this.firestore, 'shifts/' + id);
-    return docData($shifts) as Observable<Shift>;
+    return docData($shifts, {idField: "id"}) as Observable<Shift>;
   }
 
   delete(id: string) {

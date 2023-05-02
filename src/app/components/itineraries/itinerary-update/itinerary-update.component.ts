@@ -18,7 +18,7 @@ export class ItineraryUpdateComponent {
   extension = new FormControl('');
   full = new FormControl('');
   partial = new FormControl('');
-  linkRoute = new FormControl('');
+  linkItinerary = new FormControl('');
 
   itineraryId: string = '';
   itinerary: Itinerary = {

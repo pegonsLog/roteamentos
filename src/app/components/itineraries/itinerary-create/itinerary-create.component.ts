@@ -48,7 +48,6 @@ export class ItineraryCreateComponent {
   ) {
     this.idShift = this.route.snapshot.queryParams['idShift'];
     this.idEnterprise = this.route.snapshot.queryParams['idEnterprise'];
-    console.log(this.idEnterprise)
 
     this.form = this.fb.group({
       name: ['', Validators.required],
@@ -62,20 +61,19 @@ export class ItineraryCreateComponent {
   }
 
   onSave() {
-    console.log(this.form.getRawValue());
-    console.log(this.idShift);
-    // if (this.form.valid) {
-    // const itineraryForm = this.form.getRawValue();
-    // this.itineraryService.addItinerary(itineraryForm).then(
-    //   () =>
-    //     this.router.navigate(['itinerary/list'], {
-    //       queryParams: {
-    //         idShift: this.idShift,
-    //       },
-    //     }),
-    //   (error: any) => console.error('Erro ao adicionar a rota', error)
-    // );
-    // }
+    if (this.form.valid) {
+      const itineraryForm = this.form.getRawValue();
+      this.itineraryService.addItinerary(itineraryForm).then(
+        () =>
+          this.router.navigate(['itinerary/list'], {
+            queryParams: {
+              idShift: this.idShift,
+              idEnterprise: this.idEnterprise,
+            },
+          }),
+        (error: any) => console.error('Erro ao adicionar a rota', error)
+      );
+    }
   }
 
   onShiftList() {

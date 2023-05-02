@@ -1,7 +1,7 @@
 <mat-card>
   <mat-card-content>
-    <mat-toolbar color="primary" id="peso-fonte">Adicionar turno</mat-toolbar>
-    <form [formGroup]="form">
+    <form [formGroup]="form" (ngSubmit)="onSave()">
+      <mat-toolbar color="primary" id="peso-fonte">Adicionar turno</mat-toolbar>
       <mat-form-field class="full-width">
         <input
           matInput
@@ -26,20 +26,19 @@
           formControlName="linkShift"
         />
       </mat-form-field>
+      <mat-card-actions>
+        <button id="button-save" name="save" type="submit" mat-raised-button>
+          Salvar
+        </button>
+        <button
+          id="button-back"
+          name="back"
+          mat-raised-button
+          (click)="onShiftList()"
+        >
+          Voltar
+        </button>
+      </mat-card-actions>
     </form>
-
-    <mat-card-actions>
-      <button id="button-save" name="save" (click)="onSave()" mat-raised-button>
-        Salvar
-      </button>
-      <button
-        id="button-back"
-        name="back"
-        mat-raised-button
-        (click)="onShiftList()"
-      >
-        Voltar
-      </button>
-    </mat-card-actions>
   </mat-card-content>
 </mat-card>
