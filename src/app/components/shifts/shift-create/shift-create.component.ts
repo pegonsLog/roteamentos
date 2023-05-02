@@ -46,13 +46,13 @@ export class ShiftCreateComponent {
   }
 
   onSave() {
-    if (this.form.valid) {
-      const shiftForm = this.form.getRawValue();
-      this.shiftService.addShift(shiftForm).then(
-        () => this.router.navigate(['shift/list']),
-        (error: any) => console.error('Erro ao adicionar a turno', error)
-      );
-    }
+    // if (this.form.valid) {
+    const shiftForm = this.form.getRawValue();
+    this.shiftService.addShift(shiftForm).then(
+      () => this.router.navigate(['shift/list']),
+      (error: any) => console.error('Erro ao adicionar a turno', error)
+    );
+    // }
   }
 
   onShiftList() {

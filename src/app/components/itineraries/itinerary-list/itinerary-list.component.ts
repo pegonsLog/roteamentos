@@ -12,14 +12,22 @@ import { Itinerary } from 'src/app/_shared/models/Itinerary';
 })
 export class ItineraryListComponent {
   itineraries$: Observable<any>;
-  idEnterprise: string = ''
+  idShift: string = '';
+  idEnterprise: string = '';
 
   user: string = '';
   password: string = '';
   name: string = '';
   role: string = '';
 
-  displayedColumns: string[] = ['name', 'direction', 'extension', 'full', 'partial', 'actions'];
+  displayedColumns: string[] = [
+    'name',
+    'direction',
+    'extension',
+    'full',
+    'partial',
+    'actions',
+  ];
 
   constructor(
     private itinerariesService: ItinerariesService,
@@ -31,28 +39,36 @@ export class ItineraryListComponent {
     this.password = this.route.snapshot.queryParams['password'];
     this.name = this.route.snapshot.queryParams['name'];
     this.role = this.route.snapshot.queryParams['role'];
-    const idShift = this.route.snapshot.queryParams['idShift'];
+    this.idShift = this.route.snapshot.queryParams['idShift'];
     this.idEnterprise = this.route.snapshot.queryParams['idEnterprise'];
     this.itineraries$ = itinerariesService
       .list()
       .pipe(
         map((itineraries: Itinerary[]) =>
           itineraries.filter(
-            (itinerary: Itinerary) => itinerary.idShift === idShift
+            (itinerary: Itinerary) => itinerary.idShift === this.idShift
           )
         )
       );
   }
 
   onAdd(): void {
-    this.router.navigate(['itinerary/new']);
+    this.router.navigate(['itinerary/new'], {
+      queryParams: {
+        idShift: this.idShift,
+        idEnterprise: this.idEnterprise
+      },
+    });
   }
+
   onDetails(itinerary: Itinerary): void {
     this.router.navigate(['itinerary/detail']);
   }
+
   onUpdate(itinerary: Itinerary): void {
     this.router.navigate(['itinerary/update', itinerary.id]);
   }
+
   onDelete(itinerary: Itinerary): void {
     this.itinerariesService
       .delete(itinerary.id)
@@ -65,10 +81,11 @@ export class ItineraryListComponent {
   }
 
   onBack() {
+    console.log(this.idEnterprise)
     this.router.navigate(['shift/list'], {
       queryParams: {
-        idEnterprise: this.idEnterprise
-      }
+        idEnterprise: this.idEnterprise,
+      },
     });
   }
 }
