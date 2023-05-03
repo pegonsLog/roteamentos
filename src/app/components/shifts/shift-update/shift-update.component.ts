@@ -52,10 +52,8 @@ export class ShiftUpdateComponent implements OnDestroy {
       period: [this.shift.period, Validators.required],
       idEnterprise: [this.shift.idEnterprise, Validators.required],
       linkShift: [this.shift.linkShift, Validators.required],
-    });
+   });
   }
-
-
   onSave() {
     if (this.form.valid) {
       const shift = this.form.getRawValue();
