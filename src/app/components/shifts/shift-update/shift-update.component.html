@@ -1,5 +1,5 @@
 <mat-card>
-  <form [formGroup]="form" (ngSubmit)="onSave()">
+  <form [formGroup]="form" (ngSubmit)="onSave(shiftId)">
     <mat-card-content>
       <mat-toolbar color="primary" id="peso-fonte">Alterar turno</mat-toolbar>
       <mat-form-field class="full-width">

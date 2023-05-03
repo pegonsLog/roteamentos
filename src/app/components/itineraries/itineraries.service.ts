@@ -7,22 +7,23 @@ import {
   docData,
   Firestore,
   getFirestore,
-  setDoc
+  setDoc,
 } from '@angular/fire/firestore';
 import { initializeApp } from '@firebase/app';
 import { deleteDoc } from 'firebase/firestore';
 
-import { Observable } from 'rxjs';
+import { Observable, Subscription } from 'rxjs';
 import { Itinerary } from 'src/app/_shared/models/Itinerary';
 
 import { environment } from 'src/environments/environment';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class ItinerariesService {
   app = initializeApp(environment.firebase);
   db = getFirestore(this.app);
+  mySubscription: Subscription = new Subscription();
 
   role: string = '';
   itinerary: Itinerary = {
@@ -40,12 +41,17 @@ export class ItinerariesService {
 
   list(): Observable<Itinerary[]> {
     let $itineraries = collection(this.db, 'itineraries');
-    return collectionData($itineraries, {idField: "id"}) as Observable<Itinerary[]>;
+    return collectionData($itineraries, { idField: 'id' }) as Observable<
+      Itinerary[]
+    >;
   }
 
-  getItinerary(id: string){
+  getItinerary(id: string) {
     let $itineraries = doc(this.firestore, 'itineraries/' + id);
-    return docData($itineraries) as Observable<Itinerary>;
+    docData($itineraries).subscribe((docData: any) => {
+      this.itinerary = { ...docData };
+    });
+    return this.itinerary;
   }
 
   delete(id: string) {
@@ -63,4 +69,3 @@ export class ItinerariesService {
     return setDoc($itineraryRef, itinerary);
   }
 }
-

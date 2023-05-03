@@ -1,18 +1,24 @@
+import { Location } from '@angular/common';
 import { Component } from '@angular/core';
-import { FormGroup, FormControl, FormBuilder, Validators } from '@angular/forms';
-import { Router } from '@angular/router';
+import {
+  FormBuilder,
+  FormControl,
+  FormGroup,
+  Validators,
+} from '@angular/forms';
+import { ActivatedRoute, Router } from '@angular/router';
+import { Subscription } from 'rxjs';
 import { Itinerary } from 'src/app/_shared/models/Itinerary';
 import { ItinerariesService } from '../itineraries.service';
-import { Location } from '@angular/common';
 
 @Component({
   selector: 'app-itinerary-update',
   templateUrl: './itinerary-update.component.html',
-  styleUrls: ['./itinerary-update.component.scss']
+  styleUrls: ['./itinerary-update.component.scss'],
 })
 export class ItineraryUpdateComponent {
   form: FormGroup;
-  id = new FormControl('');
+  idItinerary: string = '';
   name = new FormControl('');
   direction = new FormControl('');
   extension = new FormControl('');
@@ -20,6 +26,10 @@ export class ItineraryUpdateComponent {
   partial = new FormControl('');
   linkItinerary = new FormControl('');
 
+  subscription: Subscription = new Subscription();
+
+  idEnterprise: string = '';
+  idShift: string = '';
   itineraryId: string = '';
   itinerary: Itinerary = {
     id: '',
@@ -34,26 +44,50 @@ export class ItineraryUpdateComponent {
 
   constructor(
     private router: Router,
+    private route: ActivatedRoute,
     private location: Location,
     private itineraryService: ItinerariesService,
     private fb: FormBuilder
   ) {
+    this.itineraryId = this.route.snapshot.params['id'];
+    this.idEnterprise = this.route.snapshot.queryParams['idEnterprise'];
+    this.idShift = this.route.snapshot.queryParams['idShift'];
+
+    const itinerary = this.itineraryService.getItinerary(this.itineraryId);
+
     this.form = this.fb.group({
-      name: ['', Validators.required],
+      name: [itinerary.name, Validators.required],
+      direction: [itinerary.direction, Validators.required],
+      extension: [itinerary.extension, Validators.required],
+      full: [itinerary.full, Validators.required],
+      partial: [itinerary.partial, Validators.required],
+      linkItinerary: [itinerary.linkItinerary, Validators.required],
+      idShift: [itinerary.idShift, Validators.required],
     });
   }
 
-  onSave() {
+  onSave(itineraryId: string, idEnterpriseForm: string, idShiftForm: string) {
     if (this.form.valid) {
       const itineraryForm = this.form.getRawValue();
-      this.itineraryService.addItinerary(itineraryForm).then(
-        () => this.router.navigate(['itinerary/list']),
-        (error: any) => console.error('Erro ao adicionar a rota', error)
+      this.itineraryService.update(itineraryForm, itineraryId).then(
+        () =>
+          this.router.navigate(['itinerary/list'], {
+            queryParams: {
+              idShift: idShiftForm,
+              idEnterprise: idEnterpriseForm,
+            },
+          }),
+        (error: any) => console.error('Erro ao alterar a rota', error)
       );
     }
   }
 
-  onShiftList() {
-    this.location.back();
+  onShiftList(idShiftForm: string, idEnterpriseForm: string) {
+    this.router.navigate(['itinerary/list'], {
+      queryParams: {
+        idShift: idShiftForm,
+        idEnterprise: idEnterpriseForm,
+      },
+    });
   }
 }

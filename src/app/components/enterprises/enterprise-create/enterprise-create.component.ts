@@ -1,6 +1,11 @@
 import { Location } from '@angular/common';
 import { Component } from '@angular/core';
-import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import {
+  FormBuilder,
+  FormControl,
+  FormGroup,
+  Validators,
+} from '@angular/forms';
 import { Router } from '@angular/router';
 import { EnterpriseService } from '../enterprise.service';
 
@@ -25,13 +30,14 @@ export class EnterpriseCreateComponent {
   }
 
   onSave() {
-
     if (this.form.valid) {
       const enterpriseForm = this.form.getRawValue();
+      console.log(enterpriseForm)
       this.enterpriseService.addEnterprise(enterpriseForm).then(
         () => this.router.navigate(['enterprise/list']),
         (error: any) => console.error('Erro ao adicionar a empresa', error)
-    )}
+      );
+    }
   }
 
   onEnterpriseList() {

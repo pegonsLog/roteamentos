@@ -82,7 +82,7 @@
                   login
                 </span></mat-icon
               >
-              <mat-icon id="edit" (click)="onUpdate(itinerary)"
+              <mat-icon id="edit" (click)="onUpdate(itinerary, idEnterprise)"
                 ><span class="material-symbols-outlined"> edit </span></mat-icon
               >
               <mat-icon id="delete" (click)="onDelete(itinerary)"
@@ -111,7 +111,7 @@
       style="margin: 10px 8px"
       mat-raised-button
       color="primary"
-      (click)="onBack()"
+      (click)="onBack(idEnterprise)"
     >
       VOLTAR
     </button>

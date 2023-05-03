@@ -56,7 +56,7 @@ export class ItineraryListComponent {
     this.router.navigate(['itinerary/new'], {
       queryParams: {
         idShift: this.idShift,
-        idEnterprise: this.idEnterprise
+        idEnterprise: this.idEnterprise,
       },
     });
   }
@@ -65,8 +65,13 @@ export class ItineraryListComponent {
     this.router.navigate(['itinerary/detail']);
   }
 
-  onUpdate(itinerary: Itinerary): void {
-    this.router.navigate(['itinerary/update', itinerary.id]);
+  onUpdate(itinerary: Itinerary, idEnterpriseForm: string): void {
+    this.router.navigate(['itinerary/update', itinerary.id], {
+      queryParams: {
+        idShift: itinerary.idShift,
+        idEnterprise: idEnterpriseForm,
+      },
+    });
   }
 
   onDelete(itinerary: Itinerary): void {
@@ -80,11 +85,10 @@ export class ItineraryListComponent {
       });
   }
 
-  onBack() {
-    console.log(this.idEnterprise)
+  onBack(idEnterpriseForm: string) {
     this.router.navigate(['shift/list'], {
       queryParams: {
-        idEnterprise: this.idEnterprise,
+        idEnterprise: idEnterpriseForm,
       },
     });
   }

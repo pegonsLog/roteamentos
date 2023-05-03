@@ -1,7 +1,7 @@
 <mat-card>
+  <form [formGroup]="form" (ngSubmit)="onSave(itineraryId, idEnterprise, idShift)">
   <mat-card-content>
     <mat-toolbar color="primary" id="peso-fonte">Editar rota</mat-toolbar>
-    <form [formGroup]="form" (ngSubmit)="onSave()">
       <mat-form-field class="full-width">
         <input
           matInput
@@ -60,12 +60,12 @@
         id="button-back"
         name="back"
         mat-raised-button
-        (click)="onShiftList()"
+        (click)="onShiftList(idShift, idEnterprise)"
       >
         Voltar
       </button>
     </mat-card-actions>
-  </form>
   </mat-card-content>
+</form>
 </mat-card>
 

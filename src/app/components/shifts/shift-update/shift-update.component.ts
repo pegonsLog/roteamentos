@@ -22,7 +22,7 @@ export class ShiftUpdateComponent implements OnDestroy {
   period = new FormControl();
   linkShift = new FormControl();
 
-  //shiftId: string = '';
+  shiftId: string = '';
   idEnterprise: string = '';
   shift: Shift = {
     id: '',
@@ -41,7 +41,7 @@ export class ShiftUpdateComponent implements OnDestroy {
     private shiftsService: ShiftsService,
     private fb: FormBuilder
   ) {
-    const shiftId = this.route.snapshot.params['id'];
+    this.shiftId = this.route.snapshot.params['id'];
     this.shift.idEnterprise = this.route.snapshot.queryParams['idEnterprise'];
     this.shift.period = this.route.snapshot.queryParams['period'];
     this.shift.shiftName = this.route.snapshot.queryParams['shiftName'];
@@ -52,16 +52,16 @@ export class ShiftUpdateComponent implements OnDestroy {
       period: [this.shift.period, Validators.required],
       idEnterprise: [this.shift.idEnterprise, Validators.required],
       linkShift: [this.shift.linkShift, Validators.required],
-   });
+    });
   }
-  onSave() {
+  onSave(shiftId: string) {
     if (this.form.valid) {
       const shift = this.form.getRawValue();
-      this.shiftsService.update(shift, shift.id).then(
+      this.shiftsService.update(shift, shiftId).then(
         () =>
           this.router.navigate(['shift/list'], {
             queryParams: {
-              idEnterprise: this.idEnterprise,
+              idEnterprise: shift.idEnterprise,
             },
           }),
         (error: any) => console.error('Erro ao alterar a empresa', error)

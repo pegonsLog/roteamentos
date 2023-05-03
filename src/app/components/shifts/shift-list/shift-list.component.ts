@@ -57,12 +57,13 @@ export class ShiftListComponent implements OnDestroy {
     this.router.navigate(['itinerary/list'], {
       queryParams: {
         idShift: shift.id,
-        idEnterprise: this.idEnterprise,
+        idEnterprise: shift.idEnterprise,
       },
     });
   }
 
   onUpdate(shift: Shift): void {
+    console.log(shift)
     this.router.navigate(['shift/update', shift.id], {
       queryParams: {
         shiftName: shift.shiftName,
