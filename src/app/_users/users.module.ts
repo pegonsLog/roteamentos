@@ -1,17 +1,24 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { UserListComponent } from './user-list/user-list.component';
-import { UserFormComponent } from './user-form/user-form.component';
+import { UserCreateComponent } from './user-form/user-create.component';
+import { UserUpdateComponent } from './user-update/user-update.component';
+import { ReactiveFormsModule, FormsModule } from '@angular/forms';
+import { AngularMaterialModule } from '../_shared/angular-material/angular-material.module';
 
 
 
 @NgModule({
   declarations: [
     UserListComponent,
-    UserFormComponent
+    UserCreateComponent,
+    UserUpdateComponent
   ],
   imports: [
-    CommonModule
+    CommonModule,
+    AngularMaterialModule,
+    ReactiveFormsModule,
+    FormsModule,
   ]
 })
 export class UsersModule { }

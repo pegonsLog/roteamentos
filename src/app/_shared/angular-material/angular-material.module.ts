@@ -11,7 +11,7 @@ import { MatInputModule } from '@angular/material/input';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { MatGridListModule } from '@angular/material/grid-list';
 import { MatListModule } from '@angular/material/list';
-
+import { MatSidenavModule } from '@angular/material/sidenav';
 
 @NgModule({
   exports: [
@@ -27,6 +27,7 @@ import { MatListModule } from '@angular/material/list';
     MatSnackBarModule,
     MatGridListModule,
     MatListModule,
+    MatSidenavModule,
   ],
 })
-export class AngularMaterialModule { }
+export class AngularMaterialModule {}

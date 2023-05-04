@@ -17,7 +17,6 @@ import { ShiftsModule } from './components/shifts/shifts.module';
 @NgModule({
   declarations: [
     AppComponent,
-
   ],
   imports: [
     BrowserModule,

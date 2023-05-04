@@ -34,35 +34,31 @@ export class ItineraryListComponent {
     private snackBar: MatSnackBar,
     private router: Router,
     private route: ActivatedRoute
-  ) {
-    this.user = this.route.snapshot.queryParams['user'];
-    this.password = this.route.snapshot.queryParams['password'];
-    this.name = this.route.snapshot.queryParams['name'];
-    this.role = this.route.snapshot.queryParams['role'];
-    this.idShift = this.route.snapshot.queryParams['idShift'];
-    this.idEnterprise = this.route.snapshot.queryParams['idEnterprise'];
-    this.itineraries$ = itinerariesService
+    ) {
+      this.user = this.route.snapshot.queryParams['user'];
+      this.password = this.route.snapshot.queryParams['password'];
+      this.name = this.route.snapshot.queryParams['name'];
+      this.role = this.route.snapshot.queryParams['role'];
+      this.idShift = this.route.snapshot.queryParams['idShift'];
+      this.idEnterprise = this.route.snapshot.queryParams['idEnterprise'];
+      this.itineraries$ = itinerariesService
       .list()
       .pipe(
         map((itineraries: Itinerary[]) =>
-          itineraries.filter(
-            (itinerary: Itinerary) => itinerary.idShift === this.idShift
+        itineraries.filter(
+          (itinerary: Itinerary) => itinerary.idShift === this.idShift
           )
-        )
-      );
-  }
+          )
+          );
+        }
 
-  onAdd(): void {
-    this.router.navigate(['itinerary/new'], {
-      queryParams: {
-        idShift: this.idShift,
-        idEnterprise: this.idEnterprise,
+        onAdd(): void {
+          this.router.navigate(['itinerary/new'], {
+            queryParams: {
+              idShift: this.idShift,
+              idEnterprise: this.idEnterprise,
       },
     });
-  }
-
-  onDetails(itinerary: Itinerary): void {
-    this.router.navigate(['itinerary/detail']);
   }
 
   onUpdate(itinerary: Itinerary, idEnterpriseForm: string): void {
@@ -76,9 +72,9 @@ export class ItineraryListComponent {
 
   onDelete(itinerary: Itinerary): void {
     this.itinerariesService
-      .delete(itinerary.id)
-      .then(() => {
-        console.log(itinerary.name + ' foi deletada com sucesso!');
+    .delete(itinerary.id)
+    .then(() => {
+      console.log(itinerary.name + ' foi deletada com sucesso!');
       })
       .catch((err) => {
         console.log('Deu Erro!');
@@ -88,6 +84,15 @@ export class ItineraryListComponent {
   onBack(idEnterpriseForm: string) {
     this.router.navigate(['shift/list'], {
       queryParams: {
+        idEnterprise: idEnterpriseForm,
+      },
+    });
+  }
+
+  onMaps(idEnterpriseForm: string, idShift: string) {
+    this.router.navigate(['itinerary/maps'], {
+      queryParams: {
+        idShift: idShift,
         idEnterprise: idEnterpriseForm,
       },
     });

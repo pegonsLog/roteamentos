@@ -48,10 +48,12 @@ export class ItinerariesService {
 
   getItinerary(id: string) {
     let $itineraries = doc(this.firestore, 'itineraries/' + id);
-    docData($itineraries).subscribe((docData: any) => {
-      this.itinerary = { ...docData };
-    });
-    return this.itinerary;
+    return docData($itineraries) as Observable<Itinerary>
+
+    // .subscribe((docData: any) => {
+    //   this.itinerary = { ...docData };
+    // });
+    // return this.itinerary;
   }
 
   delete(id: string) {

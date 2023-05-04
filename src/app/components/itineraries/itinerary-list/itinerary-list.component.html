@@ -16,7 +16,7 @@
   </mat-card-header>
   <mat-card-content>
     <div id="altura" *ngIf="itineraries$ | async; else loading">
-      <table mat-table [dataSource]="itineraries$ | async" >
+      <table mat-table [dataSource]="itineraries$ | async">
         <ng-container matColumnDef="name">
           <th
             id="th"
@@ -37,7 +37,9 @@
           >
             Sentido
           </th>
-          <td mat-cell *matCellDef="let itinerary">{{ itinerary.direction }}</td>
+          <td mat-cell *matCellDef="let itinerary">
+            {{ itinerary.direction }}
+          </td>
         </ng-container>
         <ng-container matColumnDef="extension">
           <th
@@ -48,7 +50,9 @@
           >
             Extensão
           </th>
-          <td mat-cell *matCellDef="let itinerary">{{ itinerary.extension }}</td>
+          <td mat-cell *matCellDef="let itinerary">
+            {{ itinerary.extension }}
+          </td>
         </ng-container>
         <ng-container matColumnDef="full">
           <th
@@ -75,13 +79,8 @@
 
         <ng-container matColumnDef="actions">
           <th id="th" mat-header-cell *matHeaderCellDef></th>
-          <td id="actions" mat-cell *matCellDef="let itinerary">
+          <td class="alinhamento-icones" mat-cell *matCellDef="let itinerary">
             <span>
-              <mat-icon id="detail" (click)="onDetails(itinerary)"
-                ><span class="material-symbols-outlined">
-                  login
-                </span></mat-icon
-              >
               <mat-icon id="edit" (click)="onUpdate(itinerary, idEnterprise)"
                 ><span class="material-symbols-outlined"> edit </span></mat-icon
               >
@@ -108,13 +107,30 @@
   <mat-divider></mat-divider>
   <mat-card-actions>
     <button
-      style="margin: 10px 8px"
+      id="maps"
       mat-raised-button
       color="primary"
+      (click)="onMaps(idEnterprise, idShift)"
+    >
+      <mat-icon
+        style="
+          font-size: 14px;
+          font-family: Montserrat;
+          width: 60px;
+          margin: 0px;
+          letter-spacing: 1px;
+        "
+      >
+        MAPAS
+      </mat-icon>
+    </button>
+    <button
+      style="margin: 10px 8px"
+      mat-raised-button
+      color="secondary"
       (click)="onBack(idEnterprise)"
     >
       VOLTAR
     </button>
   </mat-card-actions>
 </mat-card>
-

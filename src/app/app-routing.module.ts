@@ -26,7 +26,7 @@ const routes: Routes = [
       import('src/app/components/itineraries/itineraries.module').then(
         (m) => m.ItinerariesModule
       ),
-  },
+  }
 ];
 
 @NgModule({

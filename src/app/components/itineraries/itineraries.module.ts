@@ -6,12 +6,14 @@ import { ItineraryUpdateComponent } from './itinerary-update/itinerary-update.co
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { AngularMaterialModule } from 'src/app/_shared/angular-material/angular-material.module';
 import { ItinerariesRoutes } from './itineraries-routing.module';
+import { ItineraryMapsComponent } from './itinerary-maps/itinerary-maps.component';
 
 @NgModule({
   declarations: [
     ItineraryListComponent,
     ItineraryCreateComponent,
     ItineraryUpdateComponent,
+    ItineraryMapsComponent,
   ],
   imports: [
     CommonModule,

@@ -1,5 +1,5 @@
 import { Location } from '@angular/common';
-import { Component } from '@angular/core';
+import { Component, OnDestroy } from '@angular/core';
 import {
   FormBuilder,
   FormControl,
@@ -16,16 +16,17 @@ import { ItinerariesService } from '../itineraries.service';
   templateUrl: './itinerary-update.component.html',
   styleUrls: ['./itinerary-update.component.scss'],
 })
-export class ItineraryUpdateComponent {
-  form: FormGroup;
-  idItinerary: string = '';
-  name = new FormControl('');
-  direction = new FormControl('');
-  extension = new FormControl('');
-  full = new FormControl('');
-  partial = new FormControl('');
-  linkItinerary = new FormControl('');
+export class ItineraryUpdateComponent implements OnDestroy {
+  form: FormGroup = new FormGroup({
+    name: new FormControl(''),
+    direction: new FormControl(''),
+    extension: new FormControl(''),
+    full: new FormControl(''),
+    partial: new FormControl(''),
+    linkItinerary: new FormControl(''),
+  });
 
+  idItinerary: string = '';
   subscription: Subscription = new Subscription();
 
   idEnterprise: string = '';
@@ -53,17 +54,19 @@ export class ItineraryUpdateComponent {
     this.idEnterprise = this.route.snapshot.queryParams['idEnterprise'];
     this.idShift = this.route.snapshot.queryParams['idShift'];
 
-    const itinerary = this.itineraryService.getItinerary(this.itineraryId);
-
-    this.form = this.fb.group({
-      name: [itinerary.name, Validators.required],
-      direction: [itinerary.direction, Validators.required],
-      extension: [itinerary.extension, Validators.required],
-      full: [itinerary.full, Validators.required],
-      partial: [itinerary.partial, Validators.required],
-      linkItinerary: [itinerary.linkItinerary, Validators.required],
-      idShift: [itinerary.idShift, Validators.required],
-    });
+    this.subscription = this.itineraryService
+      .getItinerary(this.itineraryId)
+      .subscribe((itinerary: Itinerary) => {
+        this.form = this.fb.group({
+          name: [itinerary.name, Validators.required],
+          direction: [itinerary.direction, Validators.required],
+          extension: [itinerary.extension, Validators.required],
+          full: [itinerary.full, Validators.required],
+          partial: [itinerary.partial, Validators.required],
+          linkItinerary: [itinerary.linkItinerary, Validators.required],
+          idShift: [itinerary.idShift, Validators.required],
+        });
+      });
   }
 
   onSave(itineraryId: string, idEnterpriseForm: string, idShiftForm: string) {
@@ -89,5 +92,9 @@ export class ItineraryUpdateComponent {
         idEnterprise: idEnterpriseForm,
       },
     });
+  }
+
+  ngOnDestroy(): void {
+    this.subscription.unsubscribe();
   }
 }
