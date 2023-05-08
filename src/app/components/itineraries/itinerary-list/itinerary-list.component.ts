@@ -1,9 +1,9 @@
 import { Component } from '@angular/core';
-import { Observable, Subscription, map } from 'rxjs';
-import { ItinerariesService } from '../itineraries.service';
 import { MatSnackBar } from '@angular/material/snack-bar';
-import { Router, ActivatedRoute } from '@angular/router';
-import { Itinerary } from 'src/app/_shared/models/Itinerary';
+import { ActivatedRoute, Router } from '@angular/router';
+import { Observable, map } from 'rxjs';
+import { Itinerary } from 'src/app/_models/Itinerary';
+import { ItinerariesService } from 'src/app/_services/itineraries.service';
 
 @Component({
   selector: 'app-itinerary-list',

@@ -7,7 +7,7 @@ import {
   Validators,
 } from '@angular/forms';
 import { Router } from '@angular/router';
-import { EnterpriseService } from '../enterprise.service';
+import { EnterpriseService } from 'src/app/_services/enterprise.service';
 
 @Component({
   selector: 'app-enterprise-form',

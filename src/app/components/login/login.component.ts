@@ -1,10 +1,10 @@
 import { Component } from '@angular/core';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { Subscription } from 'rxjs';
-import { User } from '../_shared/models/User';
 import { Router } from '@angular/router';
-import { LoginService } from './login.service';
 import { FormControl } from '@angular/forms';
+import { User } from 'src/app/_models/User';
+import { LoginService } from 'src/app/_services/login.service';
 
 @Component({
   selector: 'app-login',
@@ -47,7 +47,7 @@ export class LoginComponent {
       }
     }
     if (this.isAuth) {
-      this.router.navigate(['enterprise/list'], {
+      this.router.navigate(['home/home'], {
         queryParams: {
           user: this.userAuth.user,
           password: this.userAuth.password,

@@ -2,8 +2,8 @@ import { Component, OnDestroy, OnInit } from '@angular/core';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Observable, Subscription } from 'rxjs';
-import { EnterpriseService } from '../enterprise.service';
-import { Enterprise } from 'src/app/_shared/models/Enterprise';
+import { Enterprise } from 'src/app/_models/Enterprise';
+import { EnterpriseService } from 'src/app/_services/enterprise.service';
 
 @Component({
   selector: 'app-enterprise-list',

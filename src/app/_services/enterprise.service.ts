@@ -6,18 +6,15 @@ import {
   doc,
   docData,
   Firestore,
-  getDoc,
-  getDocs,
   getFirestore,
-  setDoc,
+  setDoc
 } from '@angular/fire/firestore';
 import { initializeApp } from '@firebase/app';
 import { deleteDoc } from 'firebase/firestore';
 
-import { DocumentData } from 'firebase/firestore/lite';
-import { map, Observable } from 'rxjs';
-import { Enterprise } from 'src/app/_shared/models/Enterprise';
+import { Observable } from 'rxjs';
 import { environment } from 'src/environments/environment';
+import { Enterprise } from '../_models/Enterprise';
 
 @Injectable({
   providedIn: 'root',

@@ -13,7 +13,7 @@ import { initializeApp } from '@firebase/app';
 import { deleteDoc } from 'firebase/firestore';
 
 import { Observable } from 'rxjs';
-import { Shift } from 'src/app/_shared/models/Shift';
+import { Shift } from 'src/app/_models/Shift';
 import { environment } from 'src/environments/environment';
 
 @Injectable({

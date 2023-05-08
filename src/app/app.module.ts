@@ -5,14 +5,18 @@ import { initializeApp, provideFirebaseApp } from '@angular/fire/app';
 import { getFirestore, provideFirestore } from '@angular/fire/firestore';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { environment } from '../environments/environment';
-import { LoginModule } from './_login/login.module';
+import { EnterprisesModule } from './_modules/enterprises.module';
+import { HeaderModule } from './_modules/header.module';
+import { HomeModule } from './_modules/home.module';
+import { ItinerariesModule } from './_modules/itineraries.module';
+import { LoginModule } from './_modules/login.module';
+import { ShiftsModule } from './_modules/shifts.module';
+import { SidenavModule } from './_modules/sidenav.module';
+import { UsersModule } from './_modules/users.module';
 import { AngularMaterialModule } from './_shared/angular-material/angular-material.module';
-import { UsersModule } from './_users/users.module';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { EnterprisesModule } from './components/enterprises/enterprises.module';
-import { ItinerariesModule } from './components/itineraries/itineraries.module';
-import { ShiftsModule } from './components/shifts/shifts.module';
+
 
 @NgModule({
   declarations: [
@@ -23,11 +27,14 @@ import { ShiftsModule } from './components/shifts/shifts.module';
     AppRoutingModule,
     BrowserAnimationsModule,
     AngularMaterialModule,
-    LoginModule,
     UsersModule,
     EnterprisesModule,
     ItinerariesModule,
     ShiftsModule,
+    LoginModule,
+    HomeModule,
+    HeaderModule,
+    SidenavModule,
     provideFirebaseApp(() => initializeApp(environment.firebase)),
     provideFirestore(() => getFirestore())
   ],

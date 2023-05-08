@@ -3,8 +3,8 @@ import { Component, OnDestroy } from '@angular/core';
 import { FormBuilder, FormControl } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Subscription } from 'rxjs';
-import { Enterprise } from 'src/app/_shared/models/Enterprise';
-import { EnterpriseService } from '../enterprise.service';
+import { Enterprise } from 'src/app/_models/Enterprise';
+import { EnterpriseService } from 'src/app/_services/enterprise.service';
 
 @Component({
   selector: 'app-enterprise-update',

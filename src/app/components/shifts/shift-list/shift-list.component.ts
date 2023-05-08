@@ -2,8 +2,8 @@ import { Component, OnDestroy } from '@angular/core';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Observable, map } from 'rxjs';
-import { Shift } from 'src/app/_shared/models/Shift';
-import { ShiftsService } from '../shifts.service';
+import { Shift } from 'src/app/_models/Shift';
+import { ShiftsService } from 'src/app/_services/shifts.service';
 
 @Component({
   selector: 'app-shift-list',

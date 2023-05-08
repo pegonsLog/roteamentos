@@ -1,11 +1,11 @@
 import { Injectable } from '@angular/core';
 import { map, Observable } from 'rxjs';
 import { environment } from 'src/environments/environment';
-import { User } from '../_shared/models/User';
 import { initializeApp } from 'firebase/app';
 import {
   collection, DocumentData, getDocs, getFirestore
 } from 'firebase/firestore/lite';
+import { User } from '../_models/User';
 
 
 @Injectable({
