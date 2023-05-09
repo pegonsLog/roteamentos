@@ -1,7 +1,7 @@
 import { Routes, RouterModule } from '@angular/router';
-import { ShiftCreateComponent } from '../components/shifts/shift-create/shift-create.component';
-import { ShiftListComponent } from '../components/shifts/shift-list/shift-list.component';
-import { ShiftUpdateComponent } from '../components/shifts/shift-update/shift-update.component';
+import { ShiftCreateComponent } from './shift-create/shift-create.component';
+import { ShiftListComponent } from './shift-list/shift-list.component';
+import { ShiftUpdateComponent } from './shift-update/shift-update.component';
 
 
 const routes: Routes = [

@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { HeaderComponent } from '../_shared/header/header.component';
+import { HeaderComponent } from 'src/app/_shared/header/header.component';
 
 
 

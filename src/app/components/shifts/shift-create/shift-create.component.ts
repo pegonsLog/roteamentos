@@ -7,8 +7,8 @@ import {
   Validators,
 } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
-import { ShiftsService } from 'src/app/_services/shifts.service';
 import { Shift } from 'src/app/_models/Shift';
+import { ShiftsService } from '../shifts.service';
 
 @Component({
   selector: 'app-shift-create',

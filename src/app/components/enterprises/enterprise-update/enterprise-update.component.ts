@@ -4,7 +4,7 @@ import { FormBuilder, FormControl } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { Enterprise } from 'src/app/_models/Enterprise';
-import { EnterpriseService } from 'src/app/_services/enterprise.service';
+import { EnterpriseService } from 'src/app/components/enterprises/enterprise.service';
 
 @Component({
   selector: 'app-enterprise-update',

@@ -8,8 +8,8 @@ import {
 } from '@angular/forms';
 import { Router, ActivatedRoute } from '@angular/router';
 import { Subscription } from 'rxjs';
-import { ShiftsService } from 'src/app/_services/shifts.service';
 import { Shift } from 'src/app/_models/Shift';
+import { ShiftsService } from '../shifts.service';
 
 @Component({
   selector: 'app-shift-update',

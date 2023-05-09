@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { SidenavComponent } from '../_shared/sidenav/sidenav.component';
+import { SidenavComponent } from 'src/app/_shared/sidenav/sidenav.component';
 
 
 

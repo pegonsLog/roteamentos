@@ -1,9 +1,9 @@
-import { HeaderModule } from './header.module';
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
-import { HomeRoutes } from '../_routings/home-routing.module';
-import { HomeComponent } from '../components/home/home.component';
-import { SidenavModule } from './sidenav.module';
+import { HomeRoutes } from './home-routing.module';
+import { HomeComponent } from './home.component';
+import { HeaderModule } from '../_fragments/header.module';
+import { SidenavModule } from '../_fragments/sidenav.module';
 
 @NgModule({
   declarations: [HomeComponent],

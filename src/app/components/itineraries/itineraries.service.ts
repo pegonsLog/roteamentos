@@ -15,7 +15,7 @@ import { deleteDoc } from 'firebase/firestore';
 import { Observable, Subscription } from 'rxjs';
 
 import { environment } from 'src/environments/environment';
-import { Itinerary } from '../_models/Itinerary';
+import { Itinerary } from '../../_models/Itinerary';
 
 @Injectable({
   providedIn: 'root',

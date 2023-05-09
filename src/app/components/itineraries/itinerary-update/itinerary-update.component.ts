@@ -9,7 +9,7 @@ import {
 import { ActivatedRoute, Router } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { Itinerary } from 'src/app/_models/Itinerary';
-import { ItinerariesService } from 'src/app/_services/itineraries.service';
+import { ItinerariesService } from 'src/app/components/itineraries/itineraries.service';
 
 @Component({
   selector: 'app-itinerary-update',

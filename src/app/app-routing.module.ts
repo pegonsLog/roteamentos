@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { LoginComponent } from './components/login/login.component';
+import { LoginComponent } from './components/_login/login.component';
 
 const routes: Routes = [
   { path: '', pathMatch: 'full', redirectTo: 'login' },
@@ -9,28 +9,28 @@ const routes: Routes = [
   {
     path: 'home',
     loadChildren: () =>
-      import('src/app/_modules/home.module').then(
+      import('src/app/components/_home/home.module').then(
         (m) => m.HomeModule
       ),
   },
   {
     path: 'enterprise',
     loadChildren: () =>
-      import('src/app/_modules/enterprises.module').then(
+      import('src/app/components/enterprises/enterprises.module').then(
         (m) => m.EnterprisesModule
       ),
   },
   {
     path: 'shift',
     loadChildren: () =>
-      import('src/app/_modules/shifts.module').then(
+      import('src/app/components/shifts/shifts.module').then(
         (m) => m.ShiftsModule
       ),
   },
   {
     path: 'itinerary',
     loadChildren: () =>
-      import('src/app/_modules/itineraries.module').then(
+      import('src/app/components/itineraries/itineraries.module').then(
         (m) => m.ItinerariesModule
       ),
   }

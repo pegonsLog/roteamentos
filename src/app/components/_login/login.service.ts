@@ -5,7 +5,7 @@ import { initializeApp } from 'firebase/app';
 import {
   collection, DocumentData, getDocs, getFirestore
 } from 'firebase/firestore/lite';
-import { User } from '../_models/User';
+import { User } from '../../_models/User';
 
 
 @Injectable({

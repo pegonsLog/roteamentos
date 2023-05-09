@@ -4,7 +4,7 @@ import { Subscription } from 'rxjs';
 import { Router } from '@angular/router';
 import { FormControl } from '@angular/forms';
 import { User } from 'src/app/_models/User';
-import { LoginService } from 'src/app/_services/login.service';
+import { LoginService } from './login.service';
 
 @Component({
   selector: 'app-login',
@@ -37,27 +37,29 @@ export class LoginComponent {
   }
 
   onEnterpriseList() {
-    for (let user of this.users) {
-      if (
-        user.user === this.user.value &&
-        user.password === this.password.value
-      ) {
-        this.userAuth = user;
-        this.isAuth = true;
-      }
-    }
-    if (this.isAuth) {
-      this.router.navigate(['home/home'], {
-        queryParams: {
-          user: this.userAuth.user,
-          password: this.userAuth.password,
-          role: this.userAuth.role,
-          name: this.userAuth.name,
-        },
-      });
-    } else {
-      this.onError();
-    }
+    // for (let user of this.users) {
+    //   if (
+    //     user.user === this.user.value &&
+    //     user.password === this.password.value
+    //   ) {
+    //     this.userAuth = user;
+    //     this.isAuth = true;
+    //   }
+    // }
+    // if (this.isAuth) {
+      this.router.navigate(['home/main']
+      // , {
+      //   queryParams: {
+      //     user: this.userAuth.user,
+      //     password: this.userAuth.password,
+      //     role: this.userAuth.role,
+      //     name: this.userAuth.name,
+      //   },
+      // }
+      );
+    // } else {
+    //   this.onError();
+    // }
   }
 
   onError() {

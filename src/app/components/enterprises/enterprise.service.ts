@@ -14,7 +14,7 @@ import { deleteDoc } from 'firebase/firestore';
 
 import { Observable } from 'rxjs';
 import { environment } from 'src/environments/environment';
-import { Enterprise } from '../_models/Enterprise';
+import { Enterprise } from '../../_models/Enterprise';
 
 @Injectable({
   providedIn: 'root',
